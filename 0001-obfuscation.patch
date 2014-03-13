@@ -201,7 +201,7 @@ index 2eb4f91..00a01a7 100644
 @@ -91,6 +91,9 @@ const char title_string[] =
    " [LZO]"
  #endif
- #endif
+ #endif /* USE_COMP */
 +#ifdef USE_OBFUSCATION
 +  " [OBFUSCATION]"
 +#endif
@@ -229,10 +229,11 @@ index 2eb4f91..00a01a7 100644
    SHOW_STR (route_script);
    SHOW_STR (route_default_gateway);
    SHOW_INT (route_default_metric);
-@@ -6148,6 +6158,13 @@ add_option (struct options *options,
-       options->lzo &= ~LZO_ADAPTIVE;
+@@ -6268,6 +6278,13 @@ add_option (struct options *options,
+           options->comp.flags = COMP_F_SWAP;
+         }
      }
- #endif /* ENABLE_LZO */
+ #endif /* USE_COMP */
 +#ifdef USE_OBFUSCATION
 +  else if (streq (p[0], "obfuscation"))
 +    {
